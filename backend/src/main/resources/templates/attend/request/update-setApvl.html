@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>출퇴근기록 수정 요청</title>
+</head>
+<body>
+<h1>출퇴근기록 수정 요청</h1>
+<h1>승인권자 설정하기</h1>
+
+<form name="update-setApvl" id="update-setApvl">
+    <!--    승인권자 목록 가져와야 함  -->
+    승인권자 : <div><div id="apvl-emp-list"></div></div>
+
+    <br>사유 : <input type="text" id="msg" name="msg"><br><hr>
+
+    <!--  직원이 직전 페이지에 보냈던 요청사항 내용들을 출력  -->
+    요청사항<br>
+
+    출퇴근기록 : <input type="text" id="record" name="record" readonly size="60"><br><br>
+
+    변경 전 : <input type="text" id="before-update" name="before-update" readonly><br><br>
+
+    변경 후 : <input type="text" id="after-update" name="after-update" readonly><br><br>
+
+    <button type="button" onclick="updateAtdReq()">보내기</button>
+
+    <input type="hidden" id="date" name="date" th:value="${date}">
+    <input type="hidden" id="startTime" name="startTime" th:value="${startTime}">
+    <input type="hidden" id="endTime" name="endTime" th:value="${endTime}">
+    <input type="hidden" id="updateStartTime" name="updateStartTime" th:value="${updateStartTime}">
+    <input type="hidden" id="updateEndTime" name="updateEndTime" th:value="${updateEndTime}">
+</form>
+</body>
+
+<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+<script src="/js/utils/url.js"></script>
+<script type="text/javascript" src="/js/attend/request/request.js"></script>
+<script>updateSetApvlShow();</script>
+
+</html>

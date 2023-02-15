@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Corporation</title>
+    <style>
+        .my-box {
+            border: 1px solid;
+            padding: 10px;
+        }
+
+        #sch-nothing {
+            background-color: darkgray;
+            opacity: 0.5;
+            display: inline-block;
+        }
+
+        #atd-before {
+            background-color: rosybrown;
+            opacity: 0.5;
+            display: inline-block;
+        }
+
+        #atd-after {
+            background-color: dodgerblue;
+            opacity: 0.5;
+            display: inline-block;
+        }
+        #on {
+            background-color: rosybrown;
+        }
+        #off {
+            background-color: dodgerblue;
+        }
+    </style>
+</head>
+<body>
+<h1 th:text="${corporation.name} + '에 오신것을 환영합니다.'"></h1>
+<button type="button" onclick="toCorSelect()">다른회사</button>&nbsp;
+<button type="button" onclick="toMyPage()">내 계정</button>
+<hr>
+<div class="my-box">
+    <h3>오늘 근무</h3>
+    <div id="today-schedule"></div>
+    <br>
+    <select name="req" style="color: darkgreen" onchange="location.href = sendRequest(this.value)">
+        <option value="요청">요청</option>
+        <option value="출퇴근기록 생성" id="option-attend-new" onclick="newAttend()">출퇴근기록 생성</option>
+        <option value="출퇴근기록 수정" id="option-attend-mod" onclick="modAttend()">출퇴근기록 수정</option>
+        <option value="출퇴근기록 삭제" id="option-attend-delete" onclick="deleteAttend()">출퇴근기록 삭제</option>
+        <option value="휴가 생성" id="option-vac-new" onclick="newVac()">휴가 생성</option>
+        <option value="휴가 수정" id="option-vac-mod" onclick="modVac()">휴가 수정</option>
+        <option value="휴가 삭제" id="option-vac-delete" onclick="deleteVac()">휴가 삭제</option>
+    </select>'
+</div>
+<br><br>
+<button type="button" onclick="toRequest()">요청</button>&nbsp;
+<button type="button" onclick="toSchedule()">근무일정</button>&nbsp;
+<button type="button" onclick="toAttendance()">출퇴근기록</button>&nbsp;
+<button type="button" onclick="toVacation()">휴가</button>&nbsp;
+<th:block th:if="${role == '최고관리자' or role == '총괄관리자'} ">
+    <br>
+    <button type="button" onclick="toLocation()">출퇴근장소</button>
+    <button type="button" onclick="toPosition()">직무</button>
+    <button type="button" onclick="toDepartment()">조직</button>
+</th:block>
+<th:block th:if="${role != '직원'} ">
+    <button type="button" onclick="toEmployee()">직원</button>
+</th:block>
+
+<th:block th:if="${role == '최고관리자' or role == '총괄관리자'} ">
+    <br>-근무일정-<br>
+    <button type="button" onclick="toSchType()">근무일정 유형</button>
+    <button type="button" onclick="toTemp()">템플릿</button>
+    <button type="button" onclick="toSchReg()">근무일정 생성</button>
+</th:block>
+<p>&copy; faketee2022</p></form>
+</body>
+<script type="text/javascript" src="/js/corporation/home.js"/>
+<script type="text/javascript" src="/js/employee/employee.js"></script>
+<script src="/js/utils/url.js"></script>
+<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+<script>
+    loadTodaySchedule();
+</script>
+</html>
