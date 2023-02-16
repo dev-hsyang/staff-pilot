@@ -30,3 +30,14 @@ body {
   --vh : 100vh;
   --gutter: 1rem;
 }
+
+a, button {
+  cursor : pointer;
+}
+
+caption {
+  display : flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
