@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { ButtonProps } from './types';
 import useButtonHeirarchy from './Hooks/useHeirarchy';
@@ -14,9 +15,9 @@ export const Button: ButtonReturn = (props: ButtonProps) => {
   return (
     <>
       {kind === 'a' && (
-        <a className={style} href={href}>
+        <Link className={style} to={href!}>
           {children}
-        </a>
+        </Link>
       )}
       {kind === 'btn' && (
         <button className={style} type={type}>

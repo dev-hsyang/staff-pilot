@@ -5,15 +5,16 @@ import { MainPageWrapper } from './style';
 export default function MainPage() {
   return (
     <MainPageWrapper>
-      <h1 className="font-bold">시프티에 오신 것을 환영합니다</h1>
-      <Button kind="a">하이</Button>
-      <div>
-        <a href="/account/register-form">
-          <button type="button">가입하기</button>
-        </a>
-        <a href="/account/login-form">
-          <button type="button">로그인하기</button>
-        </a>
+      <h1 className="font-bold mb-60">시프티에 오신 것을 환영합니다</h1>
+      <div className="w-full flex flex-col gap-4">
+        <div className="flex flex-col gap-4 w-full">
+          <Button kind="a" href="/account/register-form">
+            가입하기
+          </Button>
+          <Button kind="a" href="/account/login-form">
+            로그인하기
+          </Button>
+        </div>
         <caption>&copy; faketee2022</caption>
       </div>
     </MainPageWrapper>
