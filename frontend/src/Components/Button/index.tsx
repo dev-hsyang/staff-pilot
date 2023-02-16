@@ -8,7 +8,8 @@ type ButtonReturn = (props: ButtonProps) => React.ReactElement;
 
 export const Button: ButtonReturn = (props: ButtonProps) => {
   const { children, kind = 'button', href, type = 'button', step = 'first' } = props;
-  const commonStyle = 'w-full font-semibold px-10 py-3 shadow-md rounded-md';
+  const commonStyle =
+    'hover:animate-push active:animate-pull w-full font-semibold px-10 py-3 shadow-md rounded-md';
   const heirarchy = useButtonHeirarchy(step);
   const style = `${commonStyle} ${heirarchy}`;
 
