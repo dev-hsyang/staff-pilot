@@ -15,7 +15,7 @@ export default function MainPage() {
             로그인하기
           </Button>
         </div>
-        <caption>&copy; faketee2022</caption>
+        <span>&copy; faketee2022</span>
       </div>
     </MainPageWrapper>
   );
