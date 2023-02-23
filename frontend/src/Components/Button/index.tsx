@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ButtonProps } from './types';
-import useButtonHeirarchy from './Hooks/useHeirarchy';
+import ButtonReducer from './reducer';
 
 type ButtonReturn = (props: ButtonProps) => React.ReactElement;
 
@@ -10,8 +10,12 @@ export const Button: ButtonReturn = (props: ButtonProps) => {
   const { children, kind = 'button', href, type = 'button', step = 'first' } = props;
   const commonStyle =
     'hover:animate-push active:animate-pull w-full font-semibold px-10 py-3 shadow-md rounded-md';
-  const heirarchy = useButtonHeirarchy(step);
+  const [heirarchy, dispatchHeirarchy] = useReducer(ButtonReducer, '');
   const style = `${commonStyle} ${heirarchy}`;
+
+  useEffect(() => {
+    dispatchHeirarchy({ type: step });
+  }, []);
 
   return (
     <>

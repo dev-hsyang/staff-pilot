@@ -2,7 +2,7 @@ import React from 'react';
 
 type ButtonKindsOf = 'a' | 'btn';
 type ButtonType = 'button' | 'submit' | 'reset';
-type ButtonHierarchy = 'first' | 'second' | 'third' | 'fourth' | 'fifth';
+export type ButtonHierarchy = 'first' | 'second' | 'third' | 'fourth' | 'fifth';
 
 export interface ButtonProps {
   children: React.ReactNode;

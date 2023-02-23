@@ -1,5 +1,7 @@
-export default function useButtonHeirarchy(input: string) {
-  switch (input) {
+import { ButtonHierarchy } from './types';
+
+export default function ButtonReducer(state: string, action: { type: ButtonHierarchy }) {
+  switch (action.type) {
     case 'first':
       return 'bg-primary-main text-white';
     case 'second':

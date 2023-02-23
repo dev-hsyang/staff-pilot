@@ -1,7 +1,10 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 import MainPage from '@/Pages/Main';
 import ErrorPage from '@/404';
+
+axios.defaults.withCredentials = true;
 
 function App() {
   const location = useLocation();
