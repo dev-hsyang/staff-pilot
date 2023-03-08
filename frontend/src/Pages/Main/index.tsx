@@ -8,7 +8,7 @@ export default function MainPage() {
       <h1 className="font-bold mb-60">시프티에 오신 것을 환영합니다</h1>
       <div className="w-full flex flex-col gap-4">
         <div className="flex flex-col gap-4 w-full">
-          <Button kind="a" href="/account/register-form">
+          <Button kind="a" href="signup">
             가입하기
           </Button>
           <Button kind="a" href="/account/login-form">
