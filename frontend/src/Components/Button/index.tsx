@@ -7,7 +7,7 @@ import ButtonReducer from './reducer';
 type ButtonReturn = (props: ButtonProps) => React.ReactElement;
 
 export const Button: ButtonReturn = (props: ButtonProps) => {
-  const { children, kind = 'button', href, type = 'button', step = 'first' } = props;
+  const { onClick, children, kind = 'button', href, type = 'button', step = 'first' } = props;
   const commonStyle =
     'hover:animate-push active:animate-pull w-full font-semibold px-10 py-3 shadow-md rounded-md';
   const [heirarchy, dispatchHeirarchy] = useReducer(ButtonReducer, '');
@@ -25,7 +25,7 @@ export const Button: ButtonReturn = (props: ButtonProps) => {
         </Link>
       )}
       {kind === 'btn' && (
-        <button className={style} type={type}>
+        <button className={style} type={type} onClick={onClick}>
           {children}
         </button>
       )}

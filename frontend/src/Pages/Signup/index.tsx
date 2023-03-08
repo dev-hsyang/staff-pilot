@@ -1,23 +1,42 @@
 import axios from 'axios';
 
 import Button from '@/Components/Button';
+import Input from '@/Components/Input';
 
 import { SignupPageWrapper } from './style';
 
-const test = axios.post(`${import.meta.env.VITE_APP_API}/api/account/register`, {
-  email: 'rfv1479@ajou.ac.kr',
-  password: '123',
-  name: '양현승',
-});
+const test = () => {
+  axios
+    .post(`${import.meta.env.VITE_APP_API}/api/account/register`, {
+      email: 'rfv1479@ajou.ac.kr',
+      password: '123',
+      name: '양현승',
+    })
+    .then((res) => {
+      alert('성공!');
+    })
+    .catch((err) => {
+      alert('안돼!');
+    });
+};
 
 export default function SignupPage() {
   return (
     <SignupPageWrapper>
-      <h1 className="font-bold mb-60">회원가입</h1>
-      <div className="w-full flex flex-col gap-4">
-        <div>ㅋㅋㅋ</div>
-        <button onClick={() => test}>하이</button>
-      </div>
+      <h1 className="font-bold">회원가입</h1>
+      <form method="post" className="w-full flex flex-col gap-2 text-left">
+        <Input label="이메일" placeholder="이메일을 입력하세요" message="에러 메세지 입니다" />
+        <Button onClick={test} kind="btn" step="second">
+          중복 확인
+        </Button>
+        <span className="my-5" />
+        <Input label="비밀번호" placeholder="비밀번호를 입력하세요" />
+        <Input label="비밀번호 확인" placeholder="비밀번호를 다시 입력하세요" />
+        <Input label="이름" placeholder="이름을 입력하세요" />
+      </form>
+      <Button kind="btn" type="submit">
+        회원가입
+      </Button>
     </SignupPageWrapper>
   );
 }

@@ -10,4 +10,5 @@ export interface ButtonProps {
   href?: string;
   type?: ButtonType;
   step?: ButtonHierarchy;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
