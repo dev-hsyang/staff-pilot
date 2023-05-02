@@ -5,7 +5,7 @@ import Input from '@/Components/Input';
 
 import { SignupPageWrapper } from './style';
 
-const test = () => {
+const handleDoubleCheckBtn = () => {
   axios
     .post(`${import.meta.env.VITE_APP_API}/api/account/register`, {
       email: 'rfv1479@ajou.ac.kr',
@@ -26,7 +26,7 @@ export default function SignupPage() {
       <h1 className="font-bold">회원가입</h1>
       <form method="post" className="w-full flex flex-col gap-2 text-left">
         <Input label="이메일" placeholder="이메일을 입력하세요" message="에러 메세지 입니다" />
-        <Button onClick={test} kind="btn" step="second">
+        <Button onClick={handleDoubleCheckBtn} kind="btn" step="second">
           중복 확인
         </Button>
         <span className="my-5" />

@@ -1,3 +1,5 @@
+import { FcGoogle } from 'react-icons/fc';
+
 import Button from '@/Components/Button';
 import Input from '@/Components/Input';
 
@@ -11,9 +13,17 @@ export default function LoginPage() {
         <Input label="이메일" placeholder="이메일을 입력하세요" />
         <Input label="비밀번호" placeholder="비밀번호를 입력하세요" />
       </form>
-      <Button kind="btn" type="submit">
-        로그인
-      </Button>
+      <div className="flex flex-col gap-4 w-full">
+        <Button kind="btn" type="submit">
+          로그인
+        </Button>
+        <Button kind="a" href="google" step="second">
+          <span className="flex items-center justify-center gap-3">
+            <FcGoogle size="18" />
+            <p>구글 계정으로 로그인</p>
+          </span>
+        </Button>
+      </div>
     </LoginPageWrapper>
   );
 }
