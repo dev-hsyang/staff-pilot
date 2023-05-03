@@ -5,5 +5,5 @@ export interface HeaderProps {
   leftBtn?: HeaderLeftBtnKindsOf;
   rightBtn?: HeaderRightBtnKindsOf;
   headerTitle?: string;
-  isVisible?: boolean;
+  visible?: boolean;
 }

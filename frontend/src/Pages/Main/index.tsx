@@ -1,8 +1,19 @@
+import { useEffect } from 'react';
+
 import Button from '@/Components/Button';
+import useHeader from '@/Components/Header/Hooks/useHeader';
 
 import { MainPageWrapper } from './style';
 
 export default function MainPage() {
+  const { changeHeaderState } = useHeader();
+
+  useEffect(() => {
+    changeHeaderState({
+      visible: false,
+    });
+  }, []);
+
   return (
     <MainPageWrapper>
       <h1 className="font-bold">시프티에 오신 것을 환영합니다</h1>

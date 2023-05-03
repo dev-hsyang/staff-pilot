@@ -1,7 +1,9 @@
 import axios from 'axios';
+import { useEffect } from 'react';
 
 import Button from '@/Components/Button';
 import Input from '@/Components/Input';
+import useHeader from '@/Components/Header/Hooks/useHeader';
 
 import { SignupPageWrapper } from './style';
 
@@ -21,12 +23,27 @@ const handleDoubleCheckBtn = () => {
 };
 
 export default function SignupPage() {
+  const { changeHeaderState } = useHeader();
+
+  useEffect(() => {
+    changeHeaderState({
+      visible: true,
+      leftBtn: 'back',
+    });
+  }, []);
+
   return (
     <SignupPageWrapper>
       <h1 className="font-bold">회원가입</h1>
       <form method="post" className="w-full flex flex-col gap-2 text-left">
         <Input label="이메일" placeholder="이메일을 입력하세요" message="에러 메세지 입니다" />
-        <Button onClick={handleDoubleCheckBtn} kind="btn" step="second">
+        <Button
+          onClick={() => {
+            alert('중복 확인');
+          }}
+          kind="btn"
+          step="second"
+        >
           중복 확인
         </Button>
         <span className="my-5" />

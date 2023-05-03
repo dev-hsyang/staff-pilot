@@ -1,11 +1,22 @@
 import { FcGoogle } from 'react-icons/fc';
+import { useEffect } from 'react';
 
 import Button from '@/Components/Button';
 import Input from '@/Components/Input';
+import useHeader from '@/Components/Header/Hooks/useHeader';
 
 import { LoginPageWrapper } from './style';
 
 export default function LoginPage() {
+  const { changeHeaderState } = useHeader();
+
+  useEffect(() => {
+    changeHeaderState({
+      visible: true,
+      leftBtn: 'back',
+    });
+  }, []);
+
   return (
     <LoginPageWrapper>
       <h1 className="font-bold">로그인</h1>
