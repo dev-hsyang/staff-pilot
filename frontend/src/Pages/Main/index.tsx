@@ -2,16 +2,19 @@ import { useEffect } from 'react';
 
 import Button from '@/Components/Button';
 import useHeader from '@/Components/Header/Hooks/useHeader';
+import useFooter from '@/Components/Footer/Hooks/useFooter';
 
 import { MainPageWrapper } from './style';
 
 export default function MainPage() {
   const { changeHeaderState } = useHeader();
+  const { changeFooterState } = useFooter();
 
   useEffect(() => {
     changeHeaderState({
       visible: false,
     });
+    changeFooterState({ visible: false });
   }, []);
 
   return (
