@@ -1,14 +1,16 @@
 import { FcGoogle } from 'react-icons/fc';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import useHeader from '@/Components/Header/Hooks/useHeader';
 import Button from '@/Components/Button';
 import Input from '@/Components/Input';
-import useHeader from '@/Components/Header/Hooks/useHeader';
 
 import { LoginPageWrapper } from './style';
 
 export default function LoginPage() {
   const { changeHeaderState } = useHeader();
+  const navigate = useNavigate();
 
   useEffect(() => {
     changeHeaderState({
@@ -25,7 +27,7 @@ export default function LoginPage() {
         <Input label="비밀번호" placeholder="비밀번호를 입력하세요" />
       </form>
       <div className="flex flex-col gap-4 w-full">
-        <Button kind="btn" type="submit">
+        <Button kind="btn" type="submit" onClick={() => navigate('/main')}>
           로그인
         </Button>
         <Button kind="a" href="google" step="second">

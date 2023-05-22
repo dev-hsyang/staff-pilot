@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 
-import Button from '@/Components/Button';
 import useHeader from '@/Components/Header/Hooks/useHeader';
 import useFooter from '@/Components/Footer/Hooks/useFooter';
 
@@ -12,25 +11,18 @@ export default function MainPage() {
 
   useEffect(() => {
     changeHeaderState({
-      visible: false,
+      visible: true,
+      leftBtn: 'back',
+      rightBtn: 'empty',
+      headerTitle: '메인 페이지',
     });
-    changeFooterState({ visible: false });
+    changeFooterState({ visible: true });
   }, []);
 
   return (
     <MainPageWrapper>
-      <h1 className="font-bold">시프티에 오신 것을 환영합니다</h1>
-      <div className="w-full flex flex-col gap-4">
-        <div className="flex flex-col gap-4 w-full">
-          <Button kind="a" href="login">
-            로그인
-          </Button>
-          <Button kind="a" href="signup">
-            회원가입
-          </Button>
-        </div>
-        <span>&copy; faketee2022</span>
-      </div>
+      <h1 className="font-bold">메인 페이지 제목</h1>
+      <div>메인 페이지 내용</div>
     </MainPageWrapper>
   );
 }

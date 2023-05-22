@@ -27,7 +27,7 @@
     "plugin:import/warnings",
     "plugin:import/typescript",
     "eslint-config-prettier"
-  ],  
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -44,7 +44,8 @@
     "import/prefer-default-export": "off",
     "import/no-cycle": "off",
     "import/no-named-as-default": "off",
-    "import/order": [ // import 정렬 및 구분
+    "import/order": [
+      // import 정렬 및 구분
       "error",
       {
         "groups": [
@@ -53,13 +54,28 @@
           "internal",
           ["sibling", "parent", "index"],
           "type",
-          "unknown"  
+          "unknown"
         ],
         "pathGroups": [
           {
             "pattern": "{react*,react*/**}",
             "group": "external",
             "position": "before"
+          },
+          {
+            "pattern": "@/Pages/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@/Components/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@/Utils/**",
+            "group": "internal",
+            "position": "after"
           },
           {
             "pattern": "./**/index.tsx",
@@ -77,7 +93,10 @@
         "newlines-between": "always"
       }
     ],
-    "import/extensions": ["error", "ignorePackages", {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
         "js": "never",
         "jsx": "never",
         "ts": "never",
@@ -91,9 +110,11 @@
     "no-debugger": "warn",
     "no-unused-vars": "warn", // no-unused-vars : 변수 선언 후 반드시 사용 (interface 임시로 변수 선언하고플 때 해결책)
     "no-param-reassign": ["error", { "props": false }],
-    "no-unused-expressions" : [ // 사용 안하는 표현 (예외 제외 Error 표시)
-      "error", {
-        "allowTernary" : true, // a ? b : 0 (삼항 연산자)
+    "no-unused-expressions": [
+      // 사용 안하는 표현 (예외 제외 Error 표시)
+      "error",
+      {
+        "allowTernary": true, // a ? b : 0 (삼항 연산자)
         "allowShortCircuit": true // a || b
       }
     ],

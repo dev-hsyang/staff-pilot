@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 
+import useHeader from '@/Components/Header/Hooks/useHeader';
 import Button from '@/Components/Button';
 import Input from '@/Components/Input';
-import useHeader from '@/Components/Header/Hooks/useHeader';
 
 import { SignupPageWrapper } from './style';
 
-const handleDoubleCheckBtn = () => {
+const onDoubleCheckBtn = () => {
   axios
     .post(`${import.meta.env.VITE_APP_API}/api/account/register`, {
       email: 'rfv1479@ajou.ac.kr',

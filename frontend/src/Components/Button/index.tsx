@@ -16,13 +16,15 @@ export const Button: ButtonReturn = (props: ButtonProps) => {
     type = 'button',
     step = 'first',
   } = props;
-  const isDisabled = disabled
-    ? 'opacity-25 cursor-not-allowed active:animate-none hover:animate-none'
-    : '';
-  const commonStyle =
-    'hover:animate-push active:animate-pull w-full font-semibold px-10 py-3 shadow-md rounded-md';
   const [heirarchy, dispatchHeirarchy] = useReducer(ButtonReducer, '');
-  const style = `${commonStyle} ${heirarchy} ${isDisabled}`;
+
+  const commonStyle = 'w-full font-semibold px-10 py-3 shadow-md rounded-md';
+  const toggleButtonDisabled = disabled ? 'opacity-25 cursor-not-allowed' : '';
+  const toggleButtonAnimation = disabled
+    ? 'hover:animate-none active:animate-none'
+    : 'hover:animate-push active:animate-pull';
+
+  const style = `${commonStyle} ${heirarchy} ${toggleButtonDisabled} ${toggleButtonAnimation}`;
 
   useEffect(() => {
     dispatchHeirarchy({ type: step });
