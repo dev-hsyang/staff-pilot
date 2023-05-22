@@ -16,8 +16,8 @@ export const Footer: FooterReturn = () => {
       {footerState.visible && (
         <>
           <div className="hidden h-[54px]" />
-          <footer className="fixed bg-blue-500 bottom-0 px-2 py-4 w-full full:w-[25rem]">
-            <span>푸터 영역</span>
+          <footer className="fixed shadow-[0_0px_30px_-10px_rgba(0,0,0,0.250)] bottom-0 px-2 py-4 w-full full:w-[25rem]">
+            <div>버튼 영역</div>
           </footer>
         </>
       )}

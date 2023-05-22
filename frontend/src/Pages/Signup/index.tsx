@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import useHeader from '@/Components/Header/Hooks/useHeader';
 import Button from '@/Components/Button';
 import Input from '@/Components/Input';
+import useFooter from '@/Components/Footer/Hooks/useFooter';
 
 import { SignupPageWrapper } from './style';
 
@@ -24,12 +25,14 @@ const onDoubleCheckBtn = () => {
 
 export default function SignupPage() {
   const { changeHeaderState } = useHeader();
+  const { changeFooterState } = useFooter();
 
   useEffect(() => {
     changeHeaderState({
       visible: true,
       leftBtn: 'back',
     });
+    changeFooterState({ visible: false });
   }, []);
 
   return (

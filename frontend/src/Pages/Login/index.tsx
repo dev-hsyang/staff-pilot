@@ -5,11 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import useHeader from '@/Components/Header/Hooks/useHeader';
 import Button from '@/Components/Button';
 import Input from '@/Components/Input';
+import useFooter from '@/Components/Footer/Hooks/useFooter';
 
 import { LoginPageWrapper } from './style';
 
 export default function LoginPage() {
   const { changeHeaderState } = useHeader();
+  const { changeFooterState } = useFooter();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,6 +19,7 @@ export default function LoginPage() {
       visible: true,
       leftBtn: 'back',
     });
+    changeFooterState({ visible: false });
   }, []);
 
   return (
