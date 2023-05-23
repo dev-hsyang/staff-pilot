@@ -5,7 +5,7 @@ import { InputProps } from './types';
 type InputReturn = (props: InputProps) => React.ReactElement;
 
 export const Input: InputReturn = (props: InputProps) => {
-  const { label, message = '', placeholder = '' } = props;
+  const { label, errorMsg = '', placeholder = '' } = props;
 
   return (
     <>
@@ -17,7 +17,7 @@ export const Input: InputReturn = (props: InputProps) => {
         placeholder={`${placeholder}`}
         id={label}
       />
-      <p className="text-[14px] text-red-500 pb-2">{message}</p>
+      <p className="text-[14px] text-red-500 pb-2">{errorMsg}</p>
     </>
   );
 };

@@ -17,6 +17,7 @@ export const isFooterLayoutState = atom<FooterStateKindsOf>({
   key: 'isFooterLayoutState',
   default: {
     visible: false,
+    isSelected: 'home',
   },
 });
 

@@ -25,7 +25,7 @@ export default function InitialPage() {
           <Button kind="a" href="login">
             로그인
           </Button>
-          <Button kind="a" href="signup">
+          <Button kind="a" href="signup" step="second">
             회원가입
           </Button>
         </div>

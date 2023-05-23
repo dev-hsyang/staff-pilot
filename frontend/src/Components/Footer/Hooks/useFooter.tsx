@@ -9,11 +9,12 @@ export default function useFooter() {
 
   const changeFooterState = useRecoilCallback(
     () => (props: FooterStateKindsOf) => {
-      const { visible } = props;
+      const { visible, isSelected } = props;
 
       setFooterState({
         ...footerState,
         visible,
+        isSelected,
       });
     },
     [footerState],

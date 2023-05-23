@@ -39,7 +39,7 @@ export default function SignupPage() {
     <SignupPageWrapper>
       <h1 className="font-bold">회원가입</h1>
       <form method="post" className="w-full flex flex-col gap-2 text-left">
-        <Input label="이메일" placeholder="이메일을 입력하세요" message="에러 메세지 입니다" />
+        <Input label="이메일" placeholder="이메일을 입력하세요" errorMsg="에러 메세지 입니다" />
         <Button
           onClick={() => {
             alert('중복 확인');
