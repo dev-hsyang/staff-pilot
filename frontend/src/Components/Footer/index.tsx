@@ -66,7 +66,7 @@ export const Footer: FooterReturn = () => {
   return (
     <>
       <div className="hidden h-[54px]" />
-      <footer className="fixed flex items-center align-middle justify-around shadow-[0_0px_30px_-10px_rgba(0,0,0,0.250)] bottom-0 px-2 py-2 w-full full:w-[25rem]">
+      <footer className="fixed z-9999 bg-white flex items-center align-middle justify-around shadow-[0_0px_30px_-10px_rgba(0,0,0,0.250)] bottom-0 px-2 py-2 w-full full:w-[25rem]">
         <FooterBtnComponent type="home" />
         <FooterBtnComponent type="workplan" />
         <FooterBtnComponent type="commute" />

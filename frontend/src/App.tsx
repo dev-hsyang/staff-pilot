@@ -21,6 +21,7 @@ function App() {
   return (
     <>
       <Header />
+
       <Routes location={location}>
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/" element={<InitialPage />} />

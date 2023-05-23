@@ -12,7 +12,7 @@ export default function MainPage() {
   useEffect(() => {
     changeHeaderState({
       visible: true,
-      leftBtn: 'back',
+      leftBtn: 'menu',
       rightBtn: 'empty',
       headerTitle: '메인 페이지',
     });

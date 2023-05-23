@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import useHeader from '@/Components/Header/Hooks/useHeader';
 import useFooter from '@/Components/Footer/Hooks/useFooter';
 
+import { WorkPlanPageWrapper } from './style';
+
 export default function WorkPlanPage() {
   const { changeHeaderState } = useHeader();
   const { changeFooterState } = useFooter();
@@ -18,8 +20,8 @@ export default function WorkPlanPage() {
   }, []);
 
   return (
-    <>
+    <WorkPlanPageWrapper>
       <div>근무일정 페이지 입니다</div>
-    </>
+    </WorkPlanPageWrapper>
   );
 }
