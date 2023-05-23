@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import { GrInfo } from 'react-icons/gr';
 import { useNavigate } from 'react-router-dom';
@@ -39,8 +39,15 @@ export const Header: HeaderReturn = () => {
     confirm: <div>확인</div>,
   };
 
-  const LeftBtnComponent: () => JSX.Element = () => leftBtnComponentMap[headerState.leftBtn!];
-  const RightBtnComponent: () => JSX.Element = () => rightBtnComponentMap[headerState.rightBtn!];
+  const LeftBtnComponent: () => JSX.Element = useCallback(
+    () => leftBtnComponentMap[headerState.leftBtn!],
+    [headerState],
+  );
+
+  const RightBtnComponent: () => JSX.Element = useCallback(
+    () => rightBtnComponentMap[headerState.rightBtn!],
+    [headerState],
+  );
 
   return (
     <>

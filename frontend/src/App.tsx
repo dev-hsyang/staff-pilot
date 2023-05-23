@@ -7,6 +7,8 @@ import InitialPage from '@/Pages/Initial';
 import SignupPage from '@/Pages/Signup';
 import LoginPage from '@/Pages/Login';
 import MainPage from '@/Pages/Main';
+import WorkPlanPage from '@/Pages/workPlan';
+import CommutePage from '@/Pages/commute';
 
 import Footer from '@/Components/Footer';
 import Header from '@/Components/Header';
@@ -26,6 +28,8 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/main" element={<MainPage />} />
+        <Route path="/workplan" element={<WorkPlanPage />} />
+        <Route path="/commute" element={<CommutePage />} />
       </Routes>
       <Footer />
     </>
