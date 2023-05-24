@@ -39,7 +39,7 @@ export default function SignupPage() {
     <SignupPageWrapper>
       <h1 className="font-bold">회원가입</h1>
       <form method="post" className="w-full flex flex-col gap-2 text-left">
-        <Input label="이메일" placeholder="이메일을 입력하세요" errorMsg="에러 메세지 입니다" />
+        <Input label="이메일" placehd="이메일을 입력하세요" errorMsg="에러 메세지 입니다" />
         <Button
           onClick={() => {
             alert('중복 확인');
@@ -50,9 +50,9 @@ export default function SignupPage() {
           중복 확인
         </Button>
         <span className="my-5" />
-        <Input label="비밀번호" placeholder="비밀번호를 입력하세요" />
-        <Input label="비밀번호 확인" placeholder="비밀번호를 다시 입력하세요" />
-        <Input label="이름" placeholder="이름을 입력하세요" />
+        <Input label="비밀번호" placehd="비밀번호를 입력하세요" />
+        <Input label="비밀번호 확인" placehd="비밀번호를 다시 입력하세요" />
+        <Input label="이름" placehd="이름을 입력하세요" />
       </form>
       <Button kind="btn" type="submit">
         회원가입

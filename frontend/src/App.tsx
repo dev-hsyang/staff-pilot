@@ -12,6 +12,8 @@ import CommutePage from '@/Pages/commute';
 
 import Footer from '@/Components/Footer';
 import Header from '@/Components/Header';
+import { ToastPortal } from '@/Components/Toast';
+import ToastMessage from '@/Components/Toast/Toast';
 
 axios.defaults.withCredentials = true;
 
@@ -21,7 +23,9 @@ function App() {
   return (
     <>
       <Header />
-
+      <ToastPortal>
+        <ToastMessage />
+      </ToastPortal>
       <Routes location={location}>
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/" element={<InitialPage />} />
