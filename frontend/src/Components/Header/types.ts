@@ -1,7 +1,7 @@
-type HeaderLeftBtnKindsOf = 'back' | 'menu' | 'empty';
-type HeaderRightBtnKindsOf = 'confirm' | 'profile' | 'empty';
+export type HeaderLeftBtnKindsOf = 'back' | 'menu' | 'empty';
+export type HeaderRightBtnKindsOf = 'confirm' | 'profile' | 'alarm' | 'empty';
 
-export interface HeaderProps {
+export interface HeaderStateKindsOf {
   leftBtn?: HeaderLeftBtnKindsOf;
   rightBtn?: HeaderRightBtnKindsOf;
   headerTitle?: string;

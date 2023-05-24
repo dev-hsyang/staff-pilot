@@ -1,5 +1,5 @@
 export interface InputProps {
   label: string;
-  message?: string;
+  errorMsg?: string;
   placeholder: string;
 }

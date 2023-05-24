@@ -3,26 +3,25 @@ import { useEffect } from 'react';
 import useHeader from '@/Components/Header/Hooks/useHeader';
 import useFooter from '@/Components/Footer/Hooks/useFooter';
 
-import { MainPageWrapper } from './style';
+import { WorkPlanPageWrapper } from './style';
 
-export default function MainPage() {
+export default function WorkPlanPage() {
   const { changeHeaderState } = useHeader();
   const { changeFooterState } = useFooter();
 
   useEffect(() => {
     changeHeaderState({
       visible: true,
-      leftBtn: 'menu',
+      leftBtn: 'empty',
       rightBtn: 'empty',
-      headerTitle: '메인 페이지',
+      headerTitle: '근무일정 페이지',
     });
-    changeFooterState({ visible: true, isSelected: 'home' });
+    changeFooterState({ visible: true, isSelected: 'workplan' });
   }, []);
 
   return (
-    <MainPageWrapper>
-      <h1 className="font-bold">메인 페이지 제목</h1>
-      <div>메인 페이지 내용</div>
-    </MainPageWrapper>
+    <WorkPlanPageWrapper>
+      <div>근무일정 페이지 입니다</div>
+    </WorkPlanPageWrapper>
   );
 }

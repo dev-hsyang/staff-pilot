@@ -2,13 +2,13 @@ import { useRecoilState, useRecoilCallback } from 'recoil';
 
 import { setIsHeaderLayoutState } from '@/Stores/layout';
 
-import { HeaderProps } from '../types';
+import { HeaderStateKindsOf } from '../types';
 
 export default function useHeader() {
   const [headerState, setHeaderState] = useRecoilState(setIsHeaderLayoutState);
 
   const changeHeaderState = useRecoilCallback(
-    () => (props: HeaderProps) => {
+    () => (props: HeaderStateKindsOf) => {
       const { visible, leftBtn, rightBtn, headerTitle } = props;
 
       setHeaderState({
