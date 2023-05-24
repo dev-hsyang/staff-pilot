@@ -21,14 +21,14 @@ public class VacTypeController {
     @GetMapping()
     public String vacTypes(){
 
-        return "/vacation/vtype";
+        return "vacation/vtype";
     }
 
     @EmpAuth(role = EmpRole.GENERAL_MANAGER)
     @GetMapping("/form")
     public String newType(){
 
-        return "/vacation/vtype-new";
+        return "vacation/vtype-new";
     }
 
     @EmpAuth(role = EmpRole.GENERAL_MANAGER)
@@ -36,7 +36,7 @@ public class VacTypeController {
     public String details(@RequestParam Long typeId, Model model){
 
         model.addAttribute("responseDto", vacTypeService.findById(typeId));
-        return "/vacation/vtype-details";
+        return "vacation/vtype-details";
     }
 
 }

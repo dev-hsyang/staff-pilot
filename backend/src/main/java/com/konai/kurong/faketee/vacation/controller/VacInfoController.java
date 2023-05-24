@@ -37,14 +37,14 @@ public class VacInfoController {
 
         model.addAttribute("responseDtoList", vacInfoService.loadByEmpId(userService.findEmployeeId(sessionUser, corId)));
         model.addAttribute("empId", userService.findEmployeeId(sessionUser, corId));
-        return "/vacation/vinfo-my";
+        return "vacation/vinfo-my";
     }
 
     @EmpAuth(role = EmpRole.GENERAL_MANAGER)
     @GetMapping("/dep")
     public String vacInfoDep(){
 
-        return "/vacation/vinfo-dep";
+        return "vacation/vinfo-dep";
     }
 
     @EmpAuth(role = EmpRole.GENERAL_MANAGER)
@@ -53,7 +53,7 @@ public class VacInfoController {
                                Model model){
 
         model.addAttribute("employeeList", employeeService.findByDepId(depId));
-        return "/vacation/vinfo-dep-detail";
+        return "vacation/vinfo-dep-detail";
     }
 
     @EmpAuth(role = EmpRole.GENERAL_MANAGER)
@@ -62,7 +62,7 @@ public class VacInfoController {
                              Model model){
 
         model.addAttribute("responseDto", employeeService.findById(empId));
-        return "/vacation/vinfo-emp";
+        return "vacation/vinfo-emp";
     }
 
     @EmpAuth(role = EmpRole.GENERAL_MANAGER)
@@ -71,6 +71,6 @@ public class VacInfoController {
                             Model model){
 
         model.addAttribute("empId", empId);
-        return "/vacation/vinfo-emp-mod";
+        return "vacation/vinfo-emp-mod";
     }
 }

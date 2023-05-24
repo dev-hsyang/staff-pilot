@@ -27,13 +27,13 @@ public class IndexController {
     @GetMapping("/user-auth")
     public String setAuth(){
 
-        return "/index/user-auth";
+        return "index/user-auth";
     }
 
     @GetMapping("/join-corporation")
     public String joinCorporation(){
 
-        return "/index/join-corporation";
+        return "index/join-corporation";
     }
 
 }

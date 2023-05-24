@@ -28,7 +28,7 @@ public class VacGroupController {
     @GetMapping("/form")
     public String newGroup(){
 
-        return "/vacation/vgroup-new";
+        return "vacation/vgroup-new";
     }
 
     @EmpAuth(role = EmpRole.EMPLOYEE)
@@ -36,6 +36,6 @@ public class VacGroupController {
     public String details(@RequestParam(name = "groupId") Long groupId, Model model){
 
         model.addAttribute("responseDto", vacGroupService.findById(groupId));
-        return "/vacation/vgroup-details";
+        return "vacation/vgroup-details";
     }
 }

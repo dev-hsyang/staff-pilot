@@ -20,7 +20,7 @@ public class VacRequestController {
     @GetMapping("/new")
     public String newRequest(){
 
-        return "/vacation/vreq-new";
+        return "vacation/vreq-new";
     }
 
     @GetMapping("/form")
@@ -30,6 +30,6 @@ public class VacRequestController {
 
         model.addAttribute("dates", dates);
         model.addAttribute("vactype", vacTypeService.findById(vacTypeId));
-        return "/vacation/vreq-form";
+        return "vacation/vreq-form";
     }
 }
