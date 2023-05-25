@@ -35,10 +35,10 @@ public class EmailAuthService {
     public void sendEmail(String email, String emailAuthToken) {
 
         SimpleMailMessage smm = new SimpleMailMessage();
-        smm.setFrom("konai.faketee@gmail.com");
+        smm.setFrom("staff-pilot@noreply.com");
         smm.setTo(email);
-        smm.setSubject("FAKETEE 회원가입 이메일 인증");
-        smm.setText("http://localhost:8080/api/account/confirm-email?email=" + email + "&emailAuthToken=" + emailAuthToken);
+        smm.setSubject("Staff Pilot 회원가입 이메일 인증");
+        smm.setText("https://staff-pilot.net/api/account/confirm-email?email=" + email + "&emailAuthToken=" + emailAuthToken);
 
         javaMailSender.send(smm);
     }

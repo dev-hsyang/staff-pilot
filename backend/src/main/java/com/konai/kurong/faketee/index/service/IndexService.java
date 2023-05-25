@@ -21,12 +21,12 @@ public class IndexService {
 
     public String splitUri(SessionUser sessionUser) {
 
-        if (sessionUser != null && sessionUser.getRole().equals(Role.USER) && sessionUser.getEmployeeList().isEmpty())
+        if (sessionUser != null && sessionUser.getRole().equals(Role.USER) && sessionUser.getEmployeeList().isEmpty()) // 최초로그인 또는 가입된 회사 없을때
             return INIT_USR_LOGIN_REDIRECT_URI;
         else if (sessionUser != null && sessionUser.getRole().equals(Role.USER) && !sessionUser.getEmployeeList().isEmpty())
-            return USR_LOGIN_REDIRECT_URI;
+            return USR_LOGIN_REDIRECT_URI; // 가입된 회사 있을떄
         else
-            return INDEX_WELCOME_URI;
+            return INDEX_WELCOME_URI; // 로그인되지 않은 상태일 때
     }
 
     public List<CorporationResponseDto> loadCorLists(List<EmployeeSessionResponseDto> employeeList){

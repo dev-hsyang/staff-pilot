@@ -35,9 +35,9 @@ public class RegisterController {
                             @LoginUser SessionUser sessionUser,
                             Model model){
 
-        if(sessionUser != null && sessionUser.getRole().equals(Role.USER)){
-            return "redirect:http://localhost:8080" + INIT_USR_LOGIN_REDIRECT_URL;
-        }
+        if(sessionUser != null && sessionUser.getRole().equals(Role.USER))
+            return "redirect:https://staff-pilot.net" + INIT_USR_LOGIN_REDIRECT_URL;
+
         model.addAttribute("error", error);
         model.addAttribute("exception", exception);
         return "account/login-form";
