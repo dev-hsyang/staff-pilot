@@ -19,7 +19,7 @@ export const Input: InputReturn = (props: InputProps) => {
         onChange={onChange}
         {...props}
       />
-      <p className="text-[14px] text-red-500 pb-2">{errorMsg}</p>
+      <p className="text-[14px] text-left text-red-500 pb-2">{errorMsg}</p>
     </>
   );
 };
