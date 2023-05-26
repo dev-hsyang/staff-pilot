@@ -1,8 +1,10 @@
 package com.konai.kurong.faketee.auth.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.konai.kurong.faketee.account.repository.UserRepository;
 import com.konai.kurong.faketee.auth.CustomAuthenticationProvider;
 import com.konai.kurong.faketee.auth.CustomOAuth2UserService;
+import com.konai.kurong.faketee.auth.JsonUsernamePasswordAuthenticationFilter;
 import com.konai.kurong.faketee.auth.PrincipalDetailsService;
 import com.konai.kurong.faketee.utils.handler.CustomLoginFailureHandler;
 import com.konai.kurong.faketee.utils.handler.CustomLoginSuccessHandler;
@@ -10,13 +12,20 @@ import com.konai.kurong.faketee.utils.handler.CustomOAuthLoginSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -36,6 +45,7 @@ public class SecurityConfig {
     private final CustomLoginFailureHandler customLoginFailureHandler;
     private final CustomLoginSuccessHandler customLoginSuccessHandler;
     private final CustomOAuthLoginSuccessHandler customOauthLoginSuccessHandler;
+    private final ObjectMapper objectMapper;
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -81,10 +91,30 @@ public class SecurityConfig {
     }
 
     @Bean
+    public JsonUsernamePasswordAuthenticationFilter jsonUsernamePasswordAuthenticationFilter(){
+        JsonUsernamePasswordAuthenticationFilter jsonUsernamePasswordAuthenticationFilter = new JsonUsernamePasswordAuthenticationFilter(objectMapper, customLoginSuccessHandler, customLoginFailureHandler);
+        jsonUsernamePasswordAuthenticationFilter.setAuthenticationManager(authenticationManager());
+        return jsonUsernamePasswordAuthenticationFilter;
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(){
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+
+        provider.setPasswordEncoder(passwordEncoder());
+        provider.setUserDetailsService(principalDetailsService);
+
+        return new ProviderManager(provider);
+    }
+
+
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.csrf().disable()
-                        .cors().configurationSource(corsConfigurationSource());
+        http
+                .csrf().disable()
+                .formLogin().disable()
+                .cors().configurationSource(corsConfigurationSource());
 
         http
                 .authorizeRequests()
@@ -108,15 +138,24 @@ public class SecurityConfig {
                  * 로그인 성공 시 redirect 페이지 결정 안되어 있음
                  * 일단은 직원 / 최고관리자 결정하는 페이지로 이동
                  */
-                .and()
-                    .formLogin()
-//                        .usernameParameter("email")
-                        .loginPage("/account/login-form")
-                        .loginProcessingUrl("/login")
-                        .successHandler(customLoginSuccessHandler)
-                        .failureHandler(customLoginFailureHandler)
-                        //.defaultSuccessUrl("/account/set-auth")
-                        .permitAll()
+                /**
+                 * DEPRECATED == form login 에서 JSON 방식 로그인으로 변경
+                 */
+//                .and()
+//                    .formLogin()
+////                        .usernameParameter("email")
+//                        .loginPage("/account/login-form")
+//                        .loginProcessingUrl("/login")
+//                        .successHandler(customLoginSuccessHandler)
+//                        .failureHandler(customLoginFailureHandler)
+//                        //.defaultSuccessUrl("/account/set-auth")
+//                        .permitAll()
+
+//                .and()
+//                    .authorizeHttpRequests()
+//                    .requestMatchers(new AntPathRequestMatcher("/login")).permitAll()
+//                    .anyRequest().authenticated()
+
                 .and()
                     .logout()
                         .logoutUrl("/logout")
@@ -129,6 +168,7 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/")
                         .invalidateHttpSession(true) // 세션 날리기
 //                        .permitAll()
+
                 .and()
                     .oauth2Login()
                         //.defaultSuccessUrl("/account/set-auth")
@@ -141,6 +181,8 @@ public class SecurityConfig {
                         .maximumSessions(1)
                         .maxSessionsPreventsLogin(false)
                         .expiredUrl("/account/login-form");
+
+                http.addFilterBefore(jsonUsernamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

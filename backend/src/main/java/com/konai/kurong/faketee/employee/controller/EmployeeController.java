@@ -19,6 +19,7 @@ public class EmployeeController {
 
     @GetMapping()
     public String emp() {
+
         return "employee/list";
     }
 

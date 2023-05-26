@@ -8,6 +8,7 @@ import com.konai.kurong.faketee.utils.exception.custom.auth.NoUserFoundException
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -31,7 +32,9 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
-        User loginUser = userRepository.findByEmail(authentication.getPrincipal().toString()).orElseThrow(NoUserFoundException::new);
+        Object principal = authentication.getPrincipal();
+        UserDetails userDetails = (UserDetails)principal;
+        User loginUser = userRepository.findByEmail(userDetails.getUsername()).orElseThrow(NoUserFoundException::new);
 
         /**
          * 이메일 인증이 진행되지 않은 계정에 대해 block 처리
