@@ -1,5 +1,7 @@
 package com.konai.kurong.faketee.utils.handler;
 
+import lombok.extern.slf4j.Slf4j;
+import net.minidev.json.JSONObject;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -10,8 +12,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 
+@Slf4j
 @Component
 public class CustomLoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
@@ -40,9 +44,16 @@ public class CustomLoginFailureHandler extends SimpleUrlAuthenticationFailureHan
         else {
             errorMessage = exception.getMessage();
         }
-        errorMessage = URLEncoder.encode(errorMessage, "UTF-8");
-        setDefaultFailureUrl("/account/login-form?error=true&exception=" + errorMessage);
+        //errorMessage = URLEncoder.encode(errorMessage, "UTF-8");
+        //setDefaultFailureUrl("/account/login-form?error=true&exception=" + errorMessage);
+        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        response.setContentType("application/json;charset=utf-8");
+        JSONObject json = new JSONObject();
+        json.put("code", "400");
+        json.put("message", errorMessage);
+        PrintWriter out = response.getWriter();
+        out.print(json);
 
-        super.onAuthenticationFailure(request, response, exception);
+        //super.onAuthenticationFailure(request, response, exception);
     }
 }

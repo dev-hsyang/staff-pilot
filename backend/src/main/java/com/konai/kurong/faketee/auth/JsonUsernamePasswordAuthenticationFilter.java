@@ -37,10 +37,6 @@ public class JsonUsernamePasswordAuthenticationFilter extends AbstractAuthentica
         setAuthenticationFailureHandler(authenticationFailureHandler);
     }
 
-
-
-
-
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
 

@@ -7,6 +7,7 @@ import com.konai.kurong.faketee.employee.service.EmployeeService;
 import com.konai.kurong.faketee.utils.exception.custom.auth.NoUserFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.minidev.json.JSONObject;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -16,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import static com.konai.kurong.faketee.utils.URL.INIT_USR_LOGIN_REDIRECT_URL;
 import static com.konai.kurong.faketee.utils.URL.USER_UNAUTHORIZED_URL;
@@ -54,6 +56,12 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
         sessionUser.setEmployeeIdList(employeeService.convertToSessionDto(employeeService.findByUserId(loginUser.getId())));
         request.getSession().setAttribute("user", sessionUser);
 
-        response.sendRedirect("/");
+        response.setContentType("application/json;charset=utf-8");
+        JSONObject json = new JSONObject();
+        json.put("code", "200");
+        json.put("message", "로그인 성공");
+        PrintWriter out = response.getWriter();
+        out.print(json);
+        //response.sendRedirect("/");
     }
 }

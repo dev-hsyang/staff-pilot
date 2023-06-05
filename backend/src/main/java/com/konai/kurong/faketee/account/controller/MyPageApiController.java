@@ -1,5 +1,6 @@
 package com.konai.kurong.faketee.account.controller;
 
+import com.konai.kurong.faketee.account.dto.LoginUserDto;
 import com.konai.kurong.faketee.account.dto.UserUpdateRequestDto;
 import com.konai.kurong.faketee.account.service.UserService;
 import com.konai.kurong.faketee.auth.LoginUser;
@@ -30,6 +31,13 @@ public class MyPageApiController {
     public void delete(@LoginUser SessionUser sessionUser){
 
         userService.delete(sessionUser.getId());
+    }
+
+    @GetMapping("/login-user-info")
+    public ResponseEntity<?> loginUser(@LoginUser SessionUser sessionUser){
+
+        LoginUserDto loginUserDto = new LoginUserDto(sessionUser.getId(), sessionUser.getEmail(), sessionUser.getName(), sessionUser.getRole(), sessionUser.getType());
+        return ResponseEntity.ok(loginUserDto);
     }
 
 }

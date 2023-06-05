@@ -2,10 +2,7 @@ package com.konai.kurong.faketee.auth.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.konai.kurong.faketee.account.repository.UserRepository;
-import com.konai.kurong.faketee.auth.CustomAuthenticationProvider;
-import com.konai.kurong.faketee.auth.CustomOAuth2UserService;
-import com.konai.kurong.faketee.auth.JsonUsernamePasswordAuthenticationFilter;
-import com.konai.kurong.faketee.auth.PrincipalDetailsService;
+import com.konai.kurong.faketee.auth.*;
 import com.konai.kurong.faketee.utils.handler.CustomLoginFailureHandler;
 import com.konai.kurong.faketee.utils.handler.CustomLoginSuccessHandler;
 import com.konai.kurong.faketee.utils.handler.CustomOAuthLoginSuccessHandler;
@@ -45,6 +42,7 @@ public class SecurityConfig {
     private final CustomLoginFailureHandler customLoginFailureHandler;
     private final CustomLoginSuccessHandler customLoginSuccessHandler;
     private final CustomOAuthLoginSuccessHandler customOauthLoginSuccessHandler;
+    private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
     private final ObjectMapper objectMapper;
 
     @Bean
@@ -127,13 +125,12 @@ public class SecurityConfig {
                             "/account/login-auth",
                             "/account/auth-complete",
                             "/api/account/**"
-                    )
-                    .permitAll()
-//                    .antMatchers("/api/**")
-//                    .hasRole(Role.USER.name())
+                    ).permitAll()
                     .antMatchers("/account/**").hasRole("USER")
-                    .anyRequest()
-                    .authenticated()
+                    .anyRequest().authenticated()
+                .and()
+                    .httpBasic()
+                    .authenticationEntryPoint(customAuthenticationEntryPoint)
                 /**
                  * 로그인 성공 시 redirect 페이지 결정 안되어 있음
                  * 일단은 직원 / 최고관리자 결정하는 페이지로 이동
@@ -182,7 +179,8 @@ public class SecurityConfig {
                         .maxSessionsPreventsLogin(false)
                         .expiredUrl("/account/login-form");
 
-                http.addFilterBefore(jsonUsernamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+                http
+                        .addFilterBefore(jsonUsernamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
