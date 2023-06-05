@@ -33,7 +33,7 @@ public class MyPageApiController {
         userService.delete(sessionUser.getId());
     }
 
-    @GetMapping("/login-user-info")
+    @GetMapping("/info")
     public ResponseEntity<?> loginUser(@LoginUser SessionUser sessionUser){
 
         LoginUserDto loginUserDto = new LoginUserDto(sessionUser.getId(), sessionUser.getEmail(), sessionUser.getName(), sessionUser.getRole(), sessionUser.getType());

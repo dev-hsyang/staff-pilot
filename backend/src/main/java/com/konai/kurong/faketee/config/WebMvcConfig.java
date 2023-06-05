@@ -65,7 +65,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
 
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:8080", "https://faketee-8a8c9.web.app:5000", "https://faketee-8a8c9.web.app:5173")
+                .allowedOrigins("http://localhost:8080", "https://faketee-8a8c9.web.app:5000", "https://faketee-8a8c9.web.app:5173", "https://main.staff-pilot.net:5000", "https://main.staff-pilot.net:5173")
                 .allowedMethods("GET", "POST")
                 .allowCredentials(true)
                 .maxAge(3000);
