@@ -58,7 +58,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 
         response.setContentType("application/json;charset=utf-8");
         JSONObject json = new JSONObject();
-        json.put("code", "200");
+        json.put("code", 200);
         json.put("message", "로그인 성공");
         PrintWriter out = response.getWriter();
         out.print(json);

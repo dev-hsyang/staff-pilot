@@ -124,7 +124,8 @@ public class SecurityConfig {
                             "/account/register-auth",
                             "/account/login-auth",
                             "/account/auth-complete",
-                            "/api/account/**"
+                            "/api/account/**",
+                            "/api/v2/account/**"
                     ).permitAll()
                     .antMatchers("/account/**").hasRole("USER")
                     .anyRequest().authenticated()

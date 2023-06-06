@@ -49,7 +49,7 @@ public class CustomLoginFailureHandler extends SimpleUrlAuthenticationFailureHan
         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         response.setContentType("application/json;charset=utf-8");
         JSONObject json = new JSONObject();
-        json.put("code", "400");
+        json.put("code", 400);
         json.put("message", errorMessage);
         PrintWriter out = response.getWriter();
         out.print(json);
