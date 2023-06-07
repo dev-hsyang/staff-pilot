@@ -118,9 +118,9 @@ public class EmailAuthService {
      */
     public void sendJoinCode(String email, String joinCode) {
         SimpleMailMessage smm = new SimpleMailMessage();
-        smm.setFrom("konai.faketee@gmail.com");
+        smm.setFrom("staff-pilot@noreply.com");
         smm.setTo(email);
-        smm.setSubject("FAKETEE 회사 합류코드 인증");
+        smm.setSubject("Staff Pilot 회사 합류코드 인증");
         smm.setText("회사 합류코드 : < " + joinCode + " >를 입력해주세요");
 
         javaMailSender.send(smm);
