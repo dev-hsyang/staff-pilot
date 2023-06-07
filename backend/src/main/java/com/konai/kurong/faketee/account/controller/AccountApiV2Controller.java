@@ -24,10 +24,9 @@ public class AccountApiV2Controller {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody UserJoinRequestDto userJoinRequestDto, HttpServletRequest request, HttpServletResponse response){
+    public ResponseEntity<?> register(@RequestBody UserJoinRequestDto userJoinRequestDto){
 
         Long userid = userService.join(userJoinRequestDto);
-        response.setContentType("application/json;charset=utf-8");
         JSONObject json = new JSONObject();
         json.put("code", 200);
         json.put("message", "회원가입 성공");
