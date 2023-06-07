@@ -38,7 +38,7 @@ public class EmailAuthService {
         smm.setFrom("staff-pilot@noreply.com");
         smm.setTo(email);
         smm.setSubject("Staff Pilot 회원가입 이메일 인증");
-        smm.setText("https://staff-pilot.net/api/account/confirm-email?email=" + email + "&emailAuthToken=" + emailAuthToken);
+        smm.setText("https://api.staff-pilot.net/api/account/confirm-email?email=" + email + "&emailAuthToken=" + emailAuthToken);
 
         javaMailSender.send(smm);
     }
