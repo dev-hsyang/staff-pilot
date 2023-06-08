@@ -51,15 +51,15 @@
         <option value="휴가 생성" id="option-vac-new" onclick="newVac()">휴가 생성</option>
         <option value="휴가 수정" id="option-vac-mod" onclick="modVac()">휴가 수정</option>
         <option value="휴가 삭제" id="option-vac-delete" onclick="deleteVac()">휴가 삭제</option>
-    </select>'
+    </select>
 </div>
 <br><br>
 <button type="button" onclick="toRequest()">요청</button>&nbsp;
 <button type="button" onclick="toSchedule()">근무일정</button>&nbsp;
 <button type="button" onclick="toAttendance()">출퇴근기록</button>&nbsp;
-<button type="button" onclick="toVacation()">휴가</button>&nbsp;
+<button type="button" onclick="toVacation()">휴가</button>
 <th:block th:if="${role == '최고관리자' or role == '총괄관리자'} ">
-    <br>
+    <p> - 관리자 메뉴 - </p>
     <button type="button" onclick="toLocation()">출퇴근장소</button>
     <button type="button" onclick="toPosition()">직무</button>
     <button type="button" onclick="toDepartment()">조직</button>
@@ -67,12 +67,17 @@
 <th:block th:if="${role != '직원'} ">
     <button type="button" onclick="toEmployee()">직원</button>
 </th:block>
-
+<br><br>
 <th:block th:if="${role == '최고관리자' or role == '총괄관리자'} ">
-    <br>-근무일정-<br>
     <button type="button" onclick="toSchType()">근무일정 유형</button>
     <button type="button" onclick="toTemp()">템플릿</button>
     <button type="button" onclick="toSchReg()">근무일정 생성</button>
+</th:block>
+<br><br>
+<th:block th:if="${role == '최고관리자' or role == '총괄관리자'}">
+    <button type="button" onclick="toVacGroup()">휴가그룹 생성</button>
+    <button type="button" onclick="toVacType()">휴가유형 생성</button>
+    <button type="button" onclick="toVacDep()">직원휴가 관리</button>
 </th:block>
 <p>&copy; Staff Pilot API Server - Media Project 2023-1</p>
 </body>

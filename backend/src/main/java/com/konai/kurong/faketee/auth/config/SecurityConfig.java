@@ -88,22 +88,30 @@ public class SecurityConfig {
                                     "/static/**"));
     }
 
-    @Bean
-    public JsonUsernamePasswordAuthenticationFilter jsonUsernamePasswordAuthenticationFilter(){
-        JsonUsernamePasswordAuthenticationFilter jsonUsernamePasswordAuthenticationFilter = new JsonUsernamePasswordAuthenticationFilter(objectMapper, customLoginSuccessHandler, customLoginFailureHandler);
-        jsonUsernamePasswordAuthenticationFilter.setAuthenticationManager(authenticationManager());
-        return jsonUsernamePasswordAuthenticationFilter;
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(){
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-
-        provider.setPasswordEncoder(passwordEncoder());
-        provider.setUserDetailsService(principalDetailsService);
-
-        return new ProviderManager(provider);
-    }
+    /**
+     * 로그인시 이메일과 비밀번호를 json 으로 입력받아 code, message 를 json 으로 response 해주는 설정
+     * CustomLoginSuccessHandler 의 주석코드 수정하고
+     * filterChain 에서 주석코드 수정
+     * @param http
+     * @return
+     * @throws Exception
+     */
+//    @Bean
+//    public JsonUsernamePasswordAuthenticationFilter jsonUsernamePasswordAuthenticationFilter(){
+//        JsonUsernamePasswordAuthenticationFilter jsonUsernamePasswordAuthenticationFilter = new JsonUsernamePasswordAuthenticationFilter(objectMapper, customLoginSuccessHandler, customLoginFailureHandler);
+//        jsonUsernamePasswordAuthenticationFilter.setAuthenticationManager(authenticationManager());
+//        return jsonUsernamePasswordAuthenticationFilter;
+//    }
+//
+//    @Bean
+//    public AuthenticationManager authenticationManager(){
+//        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+//
+//        provider.setPasswordEncoder(passwordEncoder());
+//        provider.setUserDetailsService(principalDetailsService);
+//
+//        return new ProviderManager(provider);
+//    }
 
 
     @Bean
@@ -136,18 +144,18 @@ public class SecurityConfig {
                  * 로그인 성공 시 redirect 페이지 결정 안되어 있음
                  * 일단은 직원 / 최고관리자 결정하는 페이지로 이동
                  */
-                /**
-                 * DEPRECATED == form login 에서 JSON 방식 로그인으로 변경
-                 */
-//                .and()
-//                    .formLogin()
-////                        .usernameParameter("email")
-//                        .loginPage("/account/login-form")
-//                        .loginProcessingUrl("/login")
-//                        .successHandler(customLoginSuccessHandler)
-//                        .failureHandler(customLoginFailureHandler)
-//                        //.defaultSuccessUrl("/account/set-auth")
-//                        .permitAll()
+//                /**
+//                 * DEPRECATED == form login 에서 JSON 방식 로그인으로 변경
+//                 */
+                .and()
+                    .formLogin()
+//                        .usernameParameter("email")
+                        .loginPage("/account/login-form")
+                        .loginProcessingUrl("/login")
+                        .successHandler(customLoginSuccessHandler)
+                        .failureHandler(customLoginFailureHandler)
+                        //.defaultSuccessUrl("/account/set-auth")
+                        .permitAll()
 
 //                .and()
 //                    .authorizeHttpRequests()
@@ -180,8 +188,11 @@ public class SecurityConfig {
                         .maxSessionsPreventsLogin(false)
                         .expiredUrl("/account/login-form");
 
-                http
-                        .addFilterBefore(jsonUsernamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        /**
+         * restful 로그인
+         */
+//                http
+//                        .addFilterBefore(jsonUsernamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

@@ -34,10 +34,14 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
-        Object principal = authentication.getPrincipal();
-        UserDetails userDetails = (UserDetails)principal;
-        User loginUser = userRepository.findByEmail(userDetails.getUsername()).orElseThrow(NoUserFoundException::new);
+        /**
+         * restful 로그인 기능 구현할 때 사용할 코드
+         */
+//        Object principal = authentication.getPrincipal();
+//        UserDetails userDetails = (UserDetails)principal;
+//        User loginUser = userRepository.findByEmail(userDetails.getUsername()).orElseThrow(NoUserFoundException::new);
 
+        User loginUser = userRepository.findByEmail(authentication.getPrincipal().toString()).orElseThrow(NoUserFoundException::new);
         /**
          * 이메일 인증이 진행되지 않은 계정에 대해 block 처리
          */
@@ -62,6 +66,6 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
         json.put("message", "로그인 성공");
         PrintWriter out = response.getWriter();
         out.print(json);
-        //response.sendRedirect("/");
+        response.sendRedirect("/");
     }
 }
