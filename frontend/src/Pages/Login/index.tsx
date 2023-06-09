@@ -1,6 +1,10 @@
 import { FcGoogle } from 'react-icons/fc';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AxiosResponse, AxiosError } from 'axios';
+import { useSetRecoilState } from 'recoil';
+
+import { setAuthState } from '@/Stores/auth';
 
 import useHeader from '@/Components/Header/Hooks/useHeader';
 import Button from '@/Components/Button';
@@ -8,13 +12,14 @@ import Input from '@/Components/Input';
 import useFooter from '@/Components/Footer/Hooks/useFooter';
 import useToastMessage from '@/Components/Toast/Hooks/useToastMessage';
 
+import doHashingData from '@/Utils/Libs/doHashingData';
 import instance from '@/Utils/api';
 
 import { LoginPageWrapper } from './style';
 
 interface ILogin {
-  이메일: string;
-  비밀번호: string;
+  username: string;
+  password: string;
 }
 
 export default function LoginPage() {
@@ -22,10 +27,11 @@ export default function LoginPage() {
   const { changeFooterState } = useFooter();
   const { openToastMessage } = useToastMessage();
   const navigate = useNavigate();
+  const setAuth = useSetRecoilState(setAuthState);
 
   const [loginInputData, setLoginInputData] = useState<ILogin>({
-    이메일: '',
-    비밀번호: '',
+    username: '',
+    password: '',
   });
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -36,12 +42,43 @@ export default function LoginPage() {
     });
   };
 
-  const loginAPI = () =>
-    instance
-      .post('login', { username: loginInputData.이메일, password: loginInputData.비밀번호 })
-      .then((res) => {
-        openToastMessage(res.data.split('"')[25], 'error');
-      });
+  const loginAPI = async () => {
+    const { username, password } = loginInputData;
+    // const hashedUsername = await doHashingData(username);
+
+    if (username === 'media@ajou.ac.kr' && password === '1234') {
+      setAuth('직원');
+      openToastMessage('로그인에 성공하였습니다', 'success');
+      navigate('/main');
+    } else if (username === 'admin@ajou.ac.kr' && password === '1234') {
+      setAuth('관리자');
+      openToastMessage('로그인에 성공하였습니다', 'success');
+      navigate('/main');
+    } else {
+      openToastMessage('로그인에 실패하였습니다', 'error');
+    }
+
+    // instance
+    //   .post('login', {
+    //     username,
+    //     password,
+    //   })
+    //   .then(async (res: any) => {
+    //     if (res.response) {
+    //       const { message } = res.response.data;
+    //       openToastMessage(message, 'error');
+    //     } else {
+    //       const { code, message } = res.data;
+    //       openToastMessage(message, 'success');
+    //       if (code === 200) {
+    //         navigate('/main');
+    //       }
+    //     }
+    //   })
+    //   .catch((err: AxiosError) => {
+    //     openToastMessage(err.message, 'error');
+    //   });
+  };
 
   useEffect(() => {
     changeHeaderState({
@@ -55,8 +92,19 @@ export default function LoginPage() {
     <LoginPageWrapper>
       <h1 className="font-bold">로그인</h1>
       <form method="post" className="w-full flex flex-col gap-2 text-left">
-        <Input label="이메일" placehd="이메일을 입력하세요" onChange={handleChangeInput} />
-        <Input label="비밀번호" placehd="비밀번호를 입력하세요" onChange={handleChangeInput} />
+        <Input
+          identity="username"
+          label="이메일"
+          placehd="이메일을 입력하세요"
+          onChange={handleChangeInput}
+        />
+        <Input
+          identity="password"
+          isType="password"
+          label="비밀번호"
+          placehd="비밀번호를 입력하세요"
+          onChange={handleChangeInput}
+        />
       </form>
       <div className="flex flex-col gap-4 w-full">
         <Button kind="btn" type="submit" onClick={loginAPI}>

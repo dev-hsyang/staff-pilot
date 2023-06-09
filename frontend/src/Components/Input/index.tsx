@@ -5,7 +5,17 @@ import { InputProps } from './types';
 type InputReturn = (props: InputProps) => React.ReactElement;
 
 export const Input: InputReturn = (props: InputProps) => {
-  const { label, errorMsg = '', placehd = '', onChange } = props;
+  const {
+    isError,
+    identity = '',
+    isType = '',
+    label,
+    errorMsg = '',
+    placehd = '',
+    onChange,
+  } = props;
+
+  const errorStyle = `text-[14px] text-left ${isError ? 'text-red-500' : 'text-green-500'} pb-2`;
 
   return (
     <>
@@ -13,13 +23,13 @@ export const Input: InputReturn = (props: InputProps) => {
         {label}
       </label>
       <input
+        type={isType}
         className="border-2 rounded-md px-2 py-3 text-[15px]"
         placeholder={`${placehd}`}
-        id={label}
+        id={identity}
         onChange={onChange}
-        {...props}
       />
-      <p className="text-[14px] text-left text-red-500 pb-2">{errorMsg}</p>
+      <p className={errorStyle}>{errorMsg}</p>
     </>
   );
 };

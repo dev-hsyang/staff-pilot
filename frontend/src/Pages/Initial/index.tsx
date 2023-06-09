@@ -19,7 +19,7 @@ export default function InitialPage() {
 
   return (
     <InitialPageWrapper>
-      <h1 className="font-bold">시프티에 오신 것을 환영합니다</h1>
+      <h1 className="font-bold">Staff-Pilot에 오신 것을 환영합니다</h1>
       <div className="w-full flex flex-col gap-4">
         <div className="flex flex-col gap-4 w-full">
           <Button kind="a" href="login">
