@@ -12,6 +12,7 @@ export const Input: InputReturn = (props: InputProps) => {
     label,
     errorMsg = '',
     placehd = '',
+    visible = false,
     onChange,
   } = props;
 
@@ -23,6 +24,7 @@ export const Input: InputReturn = (props: InputProps) => {
         {label}
       </label>
       <input
+        disabled={visible}
         type={isType}
         className="border-2 rounded-md px-2 py-3 text-[15px]"
         placeholder={`${placehd}`}

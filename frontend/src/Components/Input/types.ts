@@ -7,6 +7,7 @@ export interface InputProps {
   isType?: HTMLInputElement['type'];
   isError?: boolean;
   identity: string;
+  visible?: boolean;
 
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }

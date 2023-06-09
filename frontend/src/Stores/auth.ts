@@ -2,6 +2,11 @@ import { atom, selector } from 'recoil';
 
 type AuthT = '직원' | '관리자';
 
+interface IUser {
+  company: string;
+  location: string;
+}
+
 const authState = atom<AuthT>({
   key: 'authState',
   default: '직원',
@@ -15,7 +20,7 @@ export const setAuthState = selector({
   },
 });
 
-const userDataState = atom<Object>({
+const userDataState = atom<IUser>({
   key: 'userDataState',
   default: {
     company: '',
@@ -27,6 +32,6 @@ export const setUserDataState = selector({
   key: 'setUserDataState',
   get: ({ get }) => get(userDataState),
   set: ({ set }, newUserDataState) => {
-    set(userDataState, newUserDataState as Object);
+    set(userDataState, newUserDataState as IUser);
   },
 });

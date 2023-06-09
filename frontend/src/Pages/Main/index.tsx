@@ -9,14 +9,15 @@ import useToastMessage from '@/Components/Toast/Hooks/useToastMessage';
 
 import instance from '@/Utils/api';
 
+import TodayDuty from './components/todayDuty';
 import { MainPageWrapper } from './style';
 import InitialAdminPage from './pages/admin';
+import AuthMenu from './components/AuthMenu';
 
 export default function MainPage() {
   const { changeHeaderState } = useHeader();
   const { changeFooterState } = useFooter();
-  const { openToastMessage } = useToastMessage();
-  const [auth, setAuth] = useRecoilState(setAuthState);
+  const auth = localStorage.getItem('auth');
 
   const checkInitialAdmin = auth === '관리자' && !localStorage.getItem('admin-login');
 
@@ -36,7 +37,9 @@ export default function MainPage() {
       visible: true,
       leftBtn: 'menu',
       rightBtn: 'empty',
-      headerTitle: 'Staff-Pilot',
+      headerTitle: `${
+        localStorage.getItem('company') === null ? 'Staff-Pilot' : localStorage.getItem('company')
+      }`,
     });
     changeFooterState({ visible: true, isSelected: 'home' });
   }, []);
@@ -46,8 +49,8 @@ export default function MainPage() {
       {checkInitialAdmin === true && <InitialAdminPage />}
       {checkInitialAdmin === false && (
         <MainPageWrapper>
-          <h1 className="font-bold">메인 페이지 제목</h1>
-          <div>메인 페이지 내용</div>
+          <TodayDuty />
+          {auth === 'admin' && <AuthMenu />}
         </MainPageWrapper>
       )}
     </>

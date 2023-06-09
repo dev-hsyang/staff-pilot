@@ -2,9 +2,6 @@ import { FcGoogle } from 'react-icons/fc';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AxiosResponse, AxiosError } from 'axios';
-import { useSetRecoilState } from 'recoil';
-
-import { setAuthState } from '@/Stores/auth';
 
 import useHeader from '@/Components/Header/Hooks/useHeader';
 import Button from '@/Components/Button';
@@ -27,7 +24,9 @@ export default function LoginPage() {
   const { changeFooterState } = useFooter();
   const { openToastMessage } = useToastMessage();
   const navigate = useNavigate();
-  const setAuth = useSetRecoilState(setAuthState);
+  const setAuth = (input: string) => {
+    localStorage.setItem('auth', input);
+  };
 
   const [loginInputData, setLoginInputData] = useState<ILogin>({
     username: '',
