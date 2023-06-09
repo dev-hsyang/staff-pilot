@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const CommutePageWrapper = ({ children }: { children: React.ReactNode }) => (
-  <main className="flex flex-col text-center bg-gray-50 h-[calc(100%-6.25rem)] items-center justify-around">
+  <main className="flex gap-4 flex-col text-center h-min min-h-[calc(100%-6.5rem)] bg-gray-50 max-h-max items-center py-5">
     {children}
   </main>
 );

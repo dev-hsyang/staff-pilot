@@ -12,7 +12,7 @@ export default function WorkPlanPage() {
   useEffect(() => {
     changeHeaderState({
       visible: true,
-      leftBtn: 'empty',
+      leftBtn: 'menu',
       rightBtn: 'empty',
       headerTitle: '근무일정 페이지',
     });

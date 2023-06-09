@@ -12,7 +12,7 @@ export default function CommutePage() {
   useEffect(() => {
     changeHeaderState({
       visible: true,
-      leftBtn: 'empty',
+      leftBtn: 'menu',
       rightBtn: 'empty',
       headerTitle: '출퇴근기록 페이지',
     });

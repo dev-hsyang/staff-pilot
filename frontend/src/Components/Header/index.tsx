@@ -10,7 +10,7 @@ import React, {
 import { IoIosArrowBack } from 'react-icons/io';
 import { GrInfo } from 'react-icons/gr';
 import { useNavigate } from 'react-router-dom';
-import { AiOutlineMenu } from 'react-icons/ai';
+import { AiOutlineMenu, AiOutlinePlus } from 'react-icons/ai';
 
 import useHeader from './Hooks/useHeader';
 import { HeaderLeftBtnKindsOf, HeaderRightBtnKindsOf } from './types';
@@ -42,6 +42,12 @@ export const Header: HeaderReturn = () => {
     navigate(-1);
   };
 
+  const handlePlusMenu = () => {
+    const currentPath = window.location.pathname;
+    const newPath = currentPath.endsWith('/') ? `${currentPath}add` : `${currentPath}/add`;
+    navigate(newPath);
+  };
+
   const handleLeftSideMenu = () => {
     setMenuOpened(true);
   };
@@ -53,14 +59,14 @@ export const Header: HeaderReturn = () => {
   const leftBtnComponentMap: LeftBtnComponentMapType = {
     empty: <div className="w-[1.5rem]"></div>,
     back: (
-      <button className="flex items-center" onClick={handleGoBack}>
+      <span className="cursor-pointer flex items-center" onClick={handleGoBack}>
         <IoIosArrowBack size="24" />
-      </button>
+      </span>
     ),
     menu: (
-      <button className="flex items-center" onClick={handleLeftSideMenu}>
+      <span className="cursor-pointer flex items-center" onClick={handleLeftSideMenu}>
         <AiOutlineMenu size="20" />
-      </button>
+      </span>
     ),
   };
 
@@ -68,11 +74,16 @@ export const Header: HeaderReturn = () => {
     empty: <div className="w-[1.5rem]"></div>,
     profile: <div>프로필</div>,
     alarm: (
-      <button className="flex items-center">
+      <span className="flex items-center">
         <GrInfo size="24" />
-      </button>
+      </span>
     ),
     confirm: <div>확인</div>,
+    plus: (
+      <span className="cursor-pointer flex items-center" onClick={handlePlusMenu}>
+        <AiOutlinePlus size="24" />
+      </span>
+    ),
   };
 
   const LeftBtnComponent: () => JSX.Element = useCallback(

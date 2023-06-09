@@ -9,6 +9,8 @@ import LoginPage from '@/Pages/Login';
 import MainPage from '@/Pages/Main';
 import WorkPlanPage from '@/Pages/workPlan';
 import CommutePage from '@/Pages/commute';
+import VacationPage from '@/Pages/vacation';
+import AddVacationPage from '@/Pages/vacation/pages/addVacation';
 
 import Footer from '@/Components/Footer';
 import Header from '@/Components/Header';
@@ -34,6 +36,11 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/main" element={<MainPage />} />
         <Route path="/workplan" element={<WorkPlanPage />} />
+        <Route path="vacation">
+          <Route path="" element={<VacationPage />} />
+          <Route path="add" element={<AddVacationPage />} />
+        </Route>
+
         <Route path="/commute" element={<CommutePage />} />
       </Routes>
       <Footer />

@@ -2,12 +2,13 @@ import React, { useEffect } from 'react';
 import { AiFillHome, AiFillClockCircle } from 'react-icons/ai';
 import { BsFillCalendarEventFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
+import { ImAirplane } from 'react-icons/im';
 
 import useFooter from './Hooks/useFooter';
 import { FooterBtnWrapper } from './style';
 
 type FooterReturn = () => React.ReactElement;
-type FooterBtnKindsOf = 'home' | 'workplan' | 'commute';
+type FooterBtnKindsOf = 'home' | 'workplan' | 'commute' | 'vacation';
 type FooterBtnComponentMapType = { [k in FooterBtnKindsOf]: JSX.Element };
 
 export type FooterStateKindsOf =
@@ -58,6 +59,15 @@ export const Footer: FooterReturn = () => {
         <p>출퇴근기록</p>
       </FooterBtnWrapper>
     ),
+    vacation: (
+      <FooterBtnWrapper
+        onClick={() => navigate('vacation')}
+        select={footerState.isSelected! === 'vacation'}
+      >
+        <ImAirplane size="23" />
+        <p>휴가</p>
+      </FooterBtnWrapper>
+    ),
   };
 
   const FooterBtnComponent: ({ type }: { type: FooterBtnKindsOf }) => JSX.Element = ({ type }) =>
@@ -70,6 +80,7 @@ export const Footer: FooterReturn = () => {
         <FooterBtnComponent type="home" />
         <FooterBtnComponent type="workplan" />
         <FooterBtnComponent type="commute" />
+        <FooterBtnComponent type="vacation" />
       </footer>
     </>
   );
