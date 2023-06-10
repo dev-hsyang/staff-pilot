@@ -1,5 +1,4 @@
 # Staff Pilot
-코나아이 웹개발그룹 인턴 팀프로젝트 'Faketee' 고도화 프로젝트
 
 <img width="960" alt="미디어프로젝트_최종_2023-1" src="https://github.com/dev-hsyang/staff-pilot/assets/89997300/9d2f62b7-6450-4773-a068-6cb888e2b572">
 
