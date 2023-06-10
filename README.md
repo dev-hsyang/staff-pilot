@@ -18,7 +18,7 @@
 - MARIA DB
 - Redis
 - AWS EC2
-- AWS RDSj
+- AWS RDS
 
 # ERD
 <img width="960" alt="image" src="https://github.com/dev-hsyang/staff-pilot/assets/89997300/f2850654-45b1-47eb-93b5-ce85b8fee114">
