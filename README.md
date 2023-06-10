@@ -9,7 +9,7 @@
 
 
 # Development
-- JAVA 11
+- JDK 11
 - SpringBoot 2.7.1
 - SpringBoot WAS
 - Spring data JPA
