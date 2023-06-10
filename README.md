@@ -3,6 +3,24 @@
 
 <img width="960" alt="미디어프로젝트_최종_2023-1" src="https://github.com/dev-hsyang/staff-pilot/assets/89997300/9d2f62b7-6450-4773-a068-6cb888e2b572">
 
+
+# Tech Skill
+<img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"/> <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F.svg?&style=for-the-badge&logo=SpringBoot&logoColor=white"/> <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white"> <img src="https://img.shields.io/badge/Spring%20Security-6DB33F.svg?&style=for-the-badge&logo=SpringSecurity&logoColor=white"/> <img src="https://img.shields.io/badge/JPA-6DB33F.svg?&style=for-the-badge&logo=JPA&logoColor=white"/> <img src="https://img.shields.io/badge/QueryDSL-00599C.svg?&style=for-the-badge&logo=QueryDSL&logoColor=white"/>  <img src="https://img.shields.io/badge/MySQL-4479A1.svg?&style=for-the-badge&logo=MySQL&logoColor=white"/> <img src="https://img.shields.io/badge/Redis-DC382D.svg?&style=for-the-badge&logo=Redis&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?&style=for-the-badge&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/HTML5-E34F26.svg?&style=for-the-badge&logo=HTML5&logoColor=white"/>
+<img src="https://img.shields.io/badge/jQuery-0769AD.svg?&style=for-the-badge&logo=jQuery&logoColor=white"/> <img src="https://img.shields.io/badge/Thymleaf-005F0F?style=for-the-badge&logo=Thymeleaf&logoColor=white"/> <img src="https://img.shields.io/badge/NginX-009639?style=for-the-badge&logo=NGINX&logoColor=white"/>
+
+
+# Development
+- JAVA 11
+- SpringBoot 2.7.1
+- SpringBoot WAS
+- Spring data JPA
+- QueryDSL
+- MARIA DB
+- Redis
+- AWS EC2
+- AWS RDS
+
+
 # PortFolio
 <img width="960" alt="미디어프로젝트_최종_2023-1" src="https://github.com/dev-hsyang/staff-pilot/assets/89997300/d998ac77-86c8-4d39-9e43-a8dc3d0bb237">
 <img width="960" alt="미디어프로젝트_최종_2023-1" src="https://github.com/dev-hsyang/staff-pilot/assets/89997300/4dc41525-be25-40be-a3e5-f13955c30a45">
@@ -39,3 +57,6 @@
 <img width="960" alt="슬라이드34" src="https://github.com/dev-hsyang/staff-pilot/assets/89997300/948112e1-09e6-43f8-be3b-e87911b2b925">
 <img width="960" alt="슬라이드35" src="https://github.com/dev-hsyang/staff-pilot/assets/89997300/11bd7e7a-ac5b-4ce2-bf90-e32c176aac21">
 <img width="960" alt="슬라이드36" src="https://github.com/dev-hsyang/staff-pilot/assets/89997300/484f1e63-36f0-49c4-ac78-032a2c5b0512">
+
+# Contributes
+
