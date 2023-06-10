@@ -59,4 +59,5 @@
 <img width="960" alt="슬라이드36" src="https://github.com/dev-hsyang/staff-pilot/assets/89997300/484f1e63-36f0-49c4-ac78-032a2c5b0512">
 
 # Contributes
-
+양현승 [backend] : https://github.com/dev-hsyang
+송재한 [frontend] : https://github.com/Wisesaturn
